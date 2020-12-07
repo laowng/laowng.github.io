@@ -18,12 +18,12 @@ sidebar-avatar: /img/anan/anan.png      # use absolute URL, seeing it's used in 
 
 # SNS settings
 RSS: false
-weibo_username:     AnAn
-zhihu_username:     AnAn
-github_username:    AnAn
-# facebook_username:  username
-# jianshu_username:   jianshu_id
-twitter_username:   AnAn
+#weibo_username:     AnAn
+#zhihu_username:     AnAn
+github_username:    laowng
+#facebook_username:  username
+#jianshu_username:   jianshu_id
+#twitter_username:   AnAn
 
 
 # Build settings
