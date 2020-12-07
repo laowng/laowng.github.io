@@ -3,7 +3,7 @@ layout:     post
 title:      Java集合体系
 subtitle:   Java集合体系分类与关系
 date:       2018-04-08
-author:     Will Wang
+author:     AnAn
 header-img: img/post-bg-article.jpg
 catalog: true
 tags:

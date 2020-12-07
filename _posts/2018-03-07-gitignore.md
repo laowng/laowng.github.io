@@ -3,7 +3,7 @@ layout:     post
 title:      使用 .gitignore 忽略 Git 仓库中的文件
 subtitle:   .gitignore 文件在Git中的使用
 date:       2018-03-07
-author:     Will Wang
+author:     AnAn
 header-img: img/post-bg-debug.png
 catalog: true
 tags:

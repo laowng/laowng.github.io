@@ -3,7 +3,7 @@ layout:     post
 title:      大牛博客
 subtitle:   有事没事多学学
 date:       2018-10-11
-author:     Will Wang
+author:     AnAn
 header-img: img/post-bg-article.jpg
 catalog: true
 tags:

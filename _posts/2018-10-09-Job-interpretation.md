@@ -3,7 +3,7 @@ layout:     post
 title:      职位释义
 subtitle:   职场
 date:       2018-10-09
-author:     Will Wang
+author:     AnAn
 header-img: img/post-bg-article.jpg
 catalog: true
 tags:

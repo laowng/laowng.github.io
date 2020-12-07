@@ -3,7 +3,7 @@ layout:     post
 title:      Spring事务(Transaction)
 subtitle:   七种事务传播行为及五种隔离级别
 date:       2018-07-19
-author:     Will Wang
+author:     AnAn
 header-img: img/post-bg-article.jpg
 catalog: true
 tags:
