@@ -37,7 +37,7 @@ tags:
         对于协程，一般用于单线程内，IO操作，网络请求操作等耗时，并且不需要CPU守护的程序操作的的切换，用此来提高速度。  
         总之，一个程序可以有多个进程，一个进程可以有多个线程，一个线程可以在多个协程之间切换。      
 - python 协程模块greenlet example
-
+```python
         from greenlet import greenlet
         import time
         
@@ -57,9 +57,10 @@ tags:
             g1 = greenlet(task_1)  # 定义greenlet对象
             g2 = greenlet(task_2)
             
-            g1.switch()  # 切换到g1中运行    
+            g1.switch()  # 切换到g1中运行 
+```
 - python 协程模块gevent example
-
+```python
         import gevent
         def task_1(num):
             for i in range(num):
@@ -83,7 +84,7 @@ tags:
             g1.join()  # 等待协程运行完毕
             g2.join()
             g3.join()
-
+```
 - 解决方法
 
         将需要同步的资源放在主函数内，如果程序没有主函数，建议创建一个主函数，然后使
