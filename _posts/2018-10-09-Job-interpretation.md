@@ -4,7 +4,7 @@ title:      职位释义
 subtitle:   职场
 date:       2018-10-09
 author:     AnAn
-header-img: img/post-bg-article.jpg
+header-img: /img/post-bg-article.jpg
 catalog: true
 tags:
     - 职场

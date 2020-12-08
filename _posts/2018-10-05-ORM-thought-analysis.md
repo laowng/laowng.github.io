@@ -4,7 +4,7 @@ title:      ORM思想解析
 subtitle:   ORM
 date:       2018-10-05
 author:     AnAn
-header-img: img/post-bg-article.jpg
+header-img: /img/post-bg-article.jpg
 catalog: true
 tags:
     - ORM

@@ -4,7 +4,7 @@ title:      Linux常用命令
 subtitle:   Bash 常用命令
 date:       2018-02-06
 author:     AnAn
-header-img: img/post-bg-article.jpg
+header-img: /img/post-bg-article.jpg
 catalog: true
 tags:
     - Linux

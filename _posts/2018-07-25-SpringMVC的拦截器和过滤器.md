@@ -4,7 +4,7 @@ title:      SpringMVC的拦截器和过滤器
 subtitle:   SpringMVC的拦截器（Interceptor）和过滤器（Filter）的区别与联系
 date:       2018-07-25
 author:     AnAn
-header-img: img/post-bg-article.jpg
+header-img: /img/post-bg-article.jpg
 catalog: true
 tags:
     - SpringMVC

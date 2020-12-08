@@ -4,7 +4,7 @@ title:      lucene总结
 subtitle:   lucene
 date:       2018-10-07
 author:     AnAn
-header-img: img/post-bg-article.jpg
+header-img: /img/post-bg-article.jpg
 catalog: true
 tags:
     - Lucene
