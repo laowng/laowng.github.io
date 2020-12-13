@@ -13,10 +13,12 @@ tags:
 ##### 2020/12/1 12:00
 
 - conda
-
-        1.环境输出 conda env export > envName.yaml
-        1.环境安装 conda env create -f envName.yaml
+    ```
+    1.环境输出 conda env export > envName.yaml
+    1.环境安装 conda env create -f envName.yaml
+    ```
 - pip
-
-        1.环境输出 pip freeze > requirements.txt      
-        2.环境安装 pip install -r requirements.txt      
+    ```
+    1.环境输出 pip freeze > requirements.txt      
+    2.环境安装 pip install -r requirements.txt
+    ```
