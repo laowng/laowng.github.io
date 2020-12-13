@@ -10,15 +10,21 @@ tags:
     - python
 ---
 
-##### 2020/12/1 12:00
-
-- conda
+### conda
+1. 环境输出
+    ```bash
+    conda env export > envName.yaml
     ```
-    1.环境输出 conda env export > envName.yaml
-    1.环境安装 conda env create -f envName.yaml
+2. 环境安装
+    ```bash
+    conda env create -f envName.yaml
     ```
-- pip
+### pip
+1. 环境输出
+    ```bash
+    pip freeze > requirements.txt      
     ```
-    1.环境输出 pip freeze > requirements.txt      
-    2.环境安装 pip install -r requirements.txt
+2. 环境安装
+    ```bash
+    pip install -r requirements.txt
     ```

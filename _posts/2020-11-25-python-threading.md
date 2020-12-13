@@ -10,8 +10,7 @@ tags:
     - python
 ---
 
-##### 2020/11/25 12:00
-[GISR项目地址](https://github.com/laowng/GISR)
+- [GISR项目地址](https://github.com/laowng/GISR)
 
 - 环境
     ```
