@@ -11,7 +11,7 @@
         function qes() {
             $("#input_button").text("查ing");
             question = document.getElementById("question_input").value;
-            url = "https://c.ykhulian.com/chati/0/" + question;
+            url = "https://api.gochati.cn/jsapi.php?token=test123&q=" + question;
             $("#error_return").hide();
             $("#div10").hide();
             $("#div1").animate({
@@ -21,8 +21,8 @@
                 ajaxobj = eval(data);
                 if (status == "success") {
                     $("#input_button").text("查找");
-                    $("#question").text(ajaxobj.question);
-                    $("#answer").text(ajaxobj.answer);
+                    $("#question").text(ajaxobj.tm);
+                    $("#answer").text(ajaxobj.da);
                     $("#div10").show();
                 } else {
                     $("#input_button").attr("value", "查找");
