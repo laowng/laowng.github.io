@@ -8,13 +8,10 @@
     <link rel="stylesheet" type="text/css" href="/css/pc.css">
     <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
     <script>
-    function dealData(data){
-            alert(data);
-        }
         function qes() {
             $("#input_button").text("查ing");
             question = document.getElementById("question_input").value;
-            url = "https://api.gochati.cn/jsapi.php?token=test123&q=" + question;
+            url = "https://3312out.funcube.top:37573/getAnswer?ques=" + question;
             $("#error_return").hide();
             $("#div10").hide();
             $("#div1").animate({
@@ -37,7 +34,6 @@
     </script>
 </head>
 <body>
-<script src='https://api.gochati.cn/jsapi.php?token=test123&q=1111?callback=dealData'></script>
 <div id="div1">
     <div id="div2"><h1>搜题小助手</h1></div>
     <form id="form_search" action="javascript:qes()">

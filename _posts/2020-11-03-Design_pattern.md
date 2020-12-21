@@ -7,7 +7,7 @@ author:     AnAn
 header-img: https://dss2.bdstatic.com/kfoZeXSm1A5BphGlnYG/skin/113.jpg
 catalog: true
 tags:
-    - 笔记
+    - 设计模式，Design_Pattern
 ---
 ### Design Pattern
 - 简介
@@ -37,7 +37,7 @@ tags:
 #### 正文
 - 根据GOF，设计模式总共有23种，并且他们可以分为3大类，分别为:
   - 创建型模式
-    - 工厂模式(Factory Pattern)
+    - [工厂模式(Factory Pattern)](#工厂模式)
     - 抽象工厂模式(Abstract Factory Pattern)
     - 单列模式(Singleton Pattern)
     - 建造者模式(Builder Pattern)
@@ -89,3 +89,54 @@ tags:
     - 要求一个实体尽量少的与其他实体发生关系，使之实现高内聚（从实体程序出发）
   - 合成复原原则
     - 尽量使用合成或者聚合的方法编成，而不使用继承。
+#### 工厂模式
+- 比如一个画图程序中可以绘制 正方形 长方形 圆形 三角形 梯形 ...等 图形，他们均实现了接口 Shape{+draw():void}
+如此多，具有共性使用场景（绘制时）的类，如果直接暴露给使用者，将变得难以管理
+所以这里使用一个工厂类，去创建正方形 长方形等类的实例，是一个非常便于管理的方法，如果后续需要扩充类型，只需要对工厂类进行扩充即可
+- 在比如，在汽车工厂中有很多型号的汽车，他们都是汽车的子类，对于获取对象可以使用工厂类的的方法，返回给定信息的汽车对象的实例。
+- 程序如下：
+  - Shape.java 创建绘图接口
+    ```java
+    public interface Shape {
+       void draw();
+    }
+    ```
+    - Rectangle.java 创建绘图接口实现类 长方形
+    ```java
+    public class Rectangle implements Shape {
+    
+    @Override
+    public void draw() {
+      System.out.println("Inside Rectangle::draw() method.");
+    }
+    }
+    ```
+    - Square.java 创建绘图接口实现类 正方向
+    ```java
+    public class Square implements Shape {
+    @Override
+    public void draw() {
+      System.out.println("Inside Square::draw() method.");
+    }
+    }
+    ```
+    - ShapeFactory.java 创建工厂类，返回给定信息的实体类
+    ```java
+    public class ShapeFactory {
+    
+    //使用 getShape 方法获取形状类型的对象
+    public Shape getShape(String shapeType){
+      if(shapeType == null){
+         return null;
+      }  
+      if(shapeType.equalsIgnoreCase("CIRCLE")){
+         return new Circle();
+      } else if(shapeType.equalsIgnoreCase("RECTANGLE")){
+         return new Rectangle();
+      } else if(shapeType.equalsIgnoreCase("SQUARE")){
+         return new Square();
+      }
+      return null;
+    }
+    }
+    ```
