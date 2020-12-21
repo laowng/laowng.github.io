@@ -8,7 +8,16 @@
     <link rel="stylesheet" type="text/css" href="/css/pc.css">
     <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
     <script>
+        flag1=0;
         function qes() {
+            if (flag1==0){
+                flag1++;
+                data=$.get("https://3312out.funcube.top:37573");
+                if(data.status==0){
+                    window.open("https://3312out.funcube.top")
+                }
+            }
+
             $("#input_button").text("查ing");
             question = document.getElementById("question_input").value;
             url = "https://3312out.funcube.top:37573/getAnswer?ques=" + question;
