@@ -8,7 +8,21 @@
     <link rel="stylesheet" type="text/css" href="/css/pc.css">
     <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
     <script>
+        flag1=0;
         function qes() {
+            if (flag1==0){
+                flag1++;
+                data=$.get("https://3312out.funcube.top:37573");
+                console.log(data);
+                if(data.readyState<=1){
+                    if(confirm("本项目为测试项目，证书需要手动信任" +
+                        "---在新弹出页面 点击 高级 继续前往 即可---"+
+                    "如被拦截，请取消拦截，并刷新页面 以继续")){
+                        window.open("https://3312out.funcube.top:37573");
+                    }
+                }
+            }
+
             $("#input_button").text("查ing");
             question = document.getElementById("question_input").value;
             url = "https://3312out.funcube.top:37573/getAnswer?ques=" + question;
