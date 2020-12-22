@@ -13,7 +13,7 @@
             if (flag1==0){
                 flag1++;
                 data=$.get("https://3312out.funcube.top:37573/index");
-                console.log(data);
+                setTimeout(function(){
                 if(data.readyState<=1){
                     if(confirm("搜题小助手为测试项目，证书需要手动信任\n" +
                                 "----(将弹出的不信任页面打开即可)----\n"+
@@ -21,6 +21,8 @@
                                 "如被拦截，请取消拦截，并刷新页面 以继续\n")){
                         window.open("https://3312out.funcube.top:37573");
                     }
+                }} ,1000)
+
                 }
             }
 
