@@ -12,12 +12,13 @@
         function qes() {
             if (flag1==0){
                 flag1++;
-                data=$.get("https://3312out.funcube.top:37573");
+                data=$.get("https://3312out.funcube.top:37573/index");
                 console.log(data);
                 if(data.readyState<=1){
-                    if(confirm("本项目为测试项目，证书需要手动信任" +
-                        "---在新弹出页面 点击 高级 继续前往 即可---"+
-                    "如被拦截，请取消拦截，并刷新页面 以继续")){
+                    if(confirm("搜题小助手为测试项目，证书需要手动信任\n" +
+                                "----(将弹出的不信任页面打开即可)----\n"+
+                                "如 Chrome  点击 高级 继续前往 即可\n"+
+                                "如被拦截，请取消拦截，并刷新页面 以继续\n")){
                         window.open("https://3312out.funcube.top:37573");
                     }
                 }
