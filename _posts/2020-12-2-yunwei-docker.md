@@ -9,12 +9,13 @@ catalog: true
 tags:
     - 运维
 ---
-#### Docker载入载出    - Docker 镜像导入导出
+#### Docker载入载出
+- Docker 镜像导入导出
   - 导出
   ```bash
     docker save -o 路径/目标名.tar 镜像名[如 nginx:latest] 
   ```
-    - 导入
+  - 导入
   ```bash
     docker load -i 路径/目标名.tar
   ```
@@ -23,14 +24,14 @@ tags:
   ```bash
     docker export -o 路径/目标名.tar 容器名[如 abc123]  
   ```
-    - 导入
+  - 导入
   ```bash
     docker import 路径/目标名.tar [nginx:imp] 
   ```
 - 上述import或者load方法载入后都会以镜像的形式展示在Docker中,使用时需要重新实例化。
 区别是export方法存储的图像没有layer层,即只有第一层FROM层和系统包含的用户文件。而save会将所有的layer
 保存,并保留用户文件，所以后者对于程序更友好，程序运行一般也不会出错，但是保存的文件也更大。
-  - 例如Dockerfile文件如下,export命令将会丢失让所有RUN命令。
+- 例如Dockerfile文件如下,export命令将会丢失让所有RUN命令。
     ```
     FROM centos
     RUN yum install wget
