@@ -54,6 +54,7 @@ tags:
     只能相同的ip，不同的端口（使用端口映射）进行通信。
     - None 该模式，Docker会关闭容器的网络，适用于不需要网络的容器
     - container 使用 " --net=container:container_id(容器名也可以) "进行设置，该模式下新容器与已存在容器共享一个网卡，共享一个ip。
+
 #### 记一次Docker tomcat自动运行
 1. 使用 docker run --name ssq -P -it tomcat:latest /bin/bash 安装了tomcat容器
 2. ssq 容器重启后 发现tomcat服务不会自动重启 3.为images信息
