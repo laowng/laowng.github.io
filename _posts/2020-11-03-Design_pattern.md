@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      三种经典的java设计模式
+title:      设计模式学习心得
 subtitle:   笔记。
 date:       2020-11-03
 author:     AnAn
@@ -140,3 +140,64 @@ tags:
     }
     }
     ```
+#### 抽象工厂模式
+- 抽象工厂模式是工厂模式的一种扩展，即将工厂抽象化，实现生产工厂的“超级工厂”
+- 在这里可以进一步理解接口和抽象类的精髓：
+  - 使用接口或者抽象类可以经不同的类型进行共性化，这样作的好处是对于函数，允许其返回的对象类型不再单一。
+  比如将工厂模式例子中的形状使用接口的方法抽象化后，便可以使用接口类型 “Shape” 去声明函数getShape，这样，getShape
+  函数将允许返回多种实现于 ”Shape“ 的类的对象。
+  同样的好处还见于形参，如果没有类的继承或者接口实现的策略，那么对应不同类型的形参的同功能方法只能使用重载的方法去实现内部函数。
+  相反，使用抽象类的方法去声明形参，便可以将同一个功能聚集在一个函数里，体现高内聚的思想。
+  - 接口是对行为的抽象，抽象类是对事物的抽象。抽象类和普通类的区别是，普通类内部不允许有抽象方法，允许实例化。而抽象类必须由子类将其抽象大方全部实现后
+  才能实例化。在语法层面上，他们的区别有：
+    1. 抽象类可以提供成员方法的实现细节，而接口中只能存在public abstract 方法；
+    2. 抽象类中的成员变量可以是各种类型的，而接口中的成员变量只能是public static final类型的；
+    3. 接口中不能含有静态代码块以及静态方法，而抽象类可以有静态代码块和静态方法；
+    4. 一个类只能继承一个抽象类，而一个类却可以实现多个接口。
+  - 这里列举一个抽象类和接口使用场景的例子
+    ```java
+    //Door.java
+    public abstract class Door{//普通门
+        public void open(){//开门
+        System.out.println("Door open");
+        }
+        public void close(){//关门
+        System.out.println("Door close");
+        }
+    }
+    //Alarm.java
+    public interface Alarm{//报警方法集合
+        public abstract void alarm();
+    }
+    //Bell.java
+    public interface Bell{//门铃方法集合
+        public abstract void bell();
+    }
+    //SuperDoor.java
+    public class SuperDoor extends Door implements Alarm,Bell{//有报警功能和门铃的高档防盗门
+        ...
+    }
+    public abstract class AbstractFactory{
+        public abstract Door getDoor {//获取门工厂
+        }
+        public abstract Door getGlass {//获取玻璃工厂
+        }
+    }
+    public class DoorFactory extends AbstractFactory{
+        public Door getDoor(String kind){//实现玻璃工厂
+        if(kind.equalsIgnoreCase("superDoor")){
+            return new SuperDoor();
+        }
+        if...;
+        ...
+        }
+        public  Door getGlass {//因为这里是门工厂 所以玻璃工厂可以不实现
+            return null;
+        }
+        
+    }
+
+    ```
+    - 从以上了例子可以看出，用接口修饰行为 Alarm(报警) Bell(门铃)比较合理，因为接口支持多继承，适合扩展，而对于门这类事物，用抽象类封装可以对其内部进行描述(门的开闭)。
+    - 反过来看，如果将Door(门)声明为接口，则给门添加报警，门铃等功能就成为了与门同代的功能，这会让关系混乱
+    - 抽象工厂的出现将门 玻璃等工厂进一步继承，是对工厂的进一步抽象化，对于造房子即需要门工厂又需要玻璃工厂这样的使用场景，这种超级工厂的应用使得代码进一步高内聚，低耦合。

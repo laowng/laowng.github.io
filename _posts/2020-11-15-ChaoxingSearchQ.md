@@ -7,7 +7,6 @@ author:     AnAn
 header-img: https://dss2.bdstatic.com/kfoZeXSm1A5BphGlnYG/skin/113.jpg
 catalog: true
 tags:
-    - 日记
+    - SearchQ,搜题小助手
 ---
-
-- [网络选修课搜题助手](/SearchQ.html)
+## [网络选修课搜题助手](/SearchQ.html)
