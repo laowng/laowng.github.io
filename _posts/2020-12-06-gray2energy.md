@@ -10,9 +10,8 @@ tags:
     - 图像
 ---
 
-##### 2020/11/15 12:00
-[灰度图转热力图python](/gray2energy.py)
-该方法需要依赖numpy，cv2
+### [灰度图转热力图python](/gray2energy.py)
+- 该方法需要依赖numpy，cv2
 
 ```python
 import cv2
