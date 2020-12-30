@@ -16,18 +16,20 @@
                     "----(将弹出的不信任页面打开即可)----\n" +
                     "如 Chrome  点击 高级 继续前往 即可\n" +
                     "如被拦截，请取消拦截，并刷新页面 以继续\n")) {
-                    window.open("https://3312out.funcube.top:37573");
+                    window.open("https://3312out.funcube.top:37573/index");
+                    $("#input_button").text("查找");
                 }
             }
         }
 
         function qes() {
+        $("#input_button").text("查ing");
             if (flag1 == 0) {
                 flag1++;
                 data = $.get("https://3312out.funcube.top:37573/index");
                 setTimeout(function(){isXR(data);}, 1500);
             }
-            $("#input_button").text("查ing");
+
             question = document.getElementById("question_input").value;
             url = "https://3312out.funcube.top:37573/getAnswer?ques=" + question;
             $("#error_return").hide();
@@ -50,6 +52,7 @@
                 // alert("question: " + ajaxobj.question +"   "+"Ansewr:"+ajaxobj.answer+ "nStatus: " + status);
             });
         }
+
     </script>
 </head>
 <body>
