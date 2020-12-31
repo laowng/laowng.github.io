@@ -8,7 +8,7 @@ header-img: https://dss2.bdstatic.com/kfoZeXSm1A5BphGlnYG/skin/113.jpg
 catalog: true
 tags:
     - 运维
---------
+---
 ### ubuntu环境配置文件
 - /etc/profile
   - 此文件为系统的每个用户设置环境信息,当用户第一次登录时,该文件被执行.并从/etc/profile.d目录的配置文件中搜集shell的设置.
