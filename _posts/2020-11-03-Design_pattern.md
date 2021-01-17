@@ -105,19 +105,19 @@ tags:
     ```java
     public class Rectangle implements Shape {
     
-    @Override
-    public void draw() {
-      System.out.println("Inside Rectangle::draw() method.");
-    }
+        @Override
+        public void draw() {
+          System.out.println("Inside Rectangle::draw() method.");
+        }
     }
     ```
     - Square.java 创建绘图接口实现类 正方向
     ```java
     public class Square implements Shape {
-    @Override
-    public void draw() {
-      System.out.println("Inside Square::draw() method.");
-    }
+        @Override
+        public void draw() {
+          System.out.println("Inside Square::draw() method.");
+        }
     }
     ```
     - ShapeFactory.java 创建工厂类，返回给定信息的实体类
@@ -201,3 +201,77 @@ tags:
     - 从以上了例子可以看出，用接口修饰行为 Alarm(报警) Bell(门铃)比较合理，因为接口支持多继承，适合扩展，而对于门这类事物，用抽象类封装可以对其内部进行描述(门的开闭)。
     - 反过来看，如果将Door(门)声明为接口，则给门添加报警，门铃等功能就成为了与门同代的功能，这会让关系混乱
     - 抽象工厂的出现将门 玻璃等工厂进一步继承，是对工厂的进一步抽象化，对于造房子即需要门工厂又需要玻璃工厂这样的使用场景，这种超级工厂的应用使得代码进一步高内聚，低耦合。
+#### 单例模式
+- 注意：
+  1. 单例类只能有一个实例。
+  2. 单例类必须自己创建自己的唯一实例。
+  3. 单例类必须给所有其他对象提供这一实例。
+  4. 应把构造函数私有化
+- 应对一个全局使用，却需要频繁创建实列的类
+- 列举四种经典解决方案：
+  - 懒汉式：使用时再初始化实列，节省内存，但需要在初始函数处加锁，因为多线程下有可能出现多列，但是加锁后会造成效率低下，所以仅适用于无并发不加锁使用。
+```java
+public class Lazy{
+    private Lazy(){}
+    private static Lazy instance;
+    public static synchronized Lazy getInstance(){
+        if(instance ==null){
+            instance= new Lazy();
+            return instance;
+        }else{
+            return instance；
+        }
+    }
+}
+```
+  - 饿汉式：直接在声明时初始化，虽然浪费内存，但是线程安全，适合并发情景下使用。
+```java
+public class Hungry{
+    private Lazy(){}
+    private static final Hungry instance=new Hungry();
+    public static synchronixed Hungry getInstance(){
+        return instance；
+    }
+}
+```
+  - 双检锁/双重校验锁
+```java
+public class Lazy{
+    private Lazy(){}
+    private volatile static Lazy instance;
+    public static Lazy getInstance(){
+        if(instance ==null){
+            synchronized(this){
+                if(instance ==null){
+                    instance= new Lazy();
+                    return instance;
+                }else{
+                    return instance;
+                }
+            }    
+        }else{
+            return instance；
+        }
+    }
+}
+```
+  - 登记式/静态内部类 对静态域使用延迟初始化，比双检锁方式优秀
+```java
+public class Register{
+    private static class RegisterHandle{
+        private static final Register instance = new Register();
+    }
+    private Register(){}
+    public static final Register getInstance{
+        return RegisterHandle.instance;
+    }
+}
+```
+#### 建造者模式
+- 使用多个简单的对象一步一步构建成一个完整的对象，这些简单对象需要提取公共部分。
+- 比如，对于一个外卖套餐而言，构成该套餐的各个事物应该是具有不同属性值的相同类别。在建造者模式中会将各种食物分类，比如肉类和蔬菜类。然后进一步对这两种分类
+做进一步细节化分类，比如肉类可分为猪肉类和鸡肉类，蔬菜类可分为有机蔬菜和非有机蔬菜。如此自上往下的分类，用接口和继承的方法抽象处新的细化类。
+- 最后在建造者类中可以直接调用最底层的细化类，去建造需求对象。在上边例子中的表现是使用套餐制造者类，去直接调用猪肉和有机蔬菜这种细化类去返回食物组合对象。
+- **这种模式我认为，相当于在工厂模式的基础上，创建一个建造者的角色，是的该角色能返回不同的对象组合，而这些对象来源于工厂角色。上边举例中，将细化食物封装成工厂，只差一步。**
+
+
