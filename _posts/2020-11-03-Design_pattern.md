@@ -227,9 +227,9 @@ public class Lazy{
   - 饿汉式：直接在声明时初始化，虽然浪费内存，但是线程安全，适合并发情景下使用。
 ```java
 public class Hungry{
-    private Lazy(){}
+    private Hungry(){}
     private static final Hungry instance=new Hungry();
-    public static synchronixed Hungry getInstance(){
+    public static  Hungry getInstance(){
         return instance；
     }
 }
