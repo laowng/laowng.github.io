@@ -25,6 +25,19 @@ tags:
 ### 终端标准输出和错误输出
 - command 1 > fielname 把把标准输出重定向到一个文件中
 - command > filename 2>&1 把把标准输出和标准错误一起重定向到一个文件中
+### bash常用命令
+- ctrl-c: ( kill foreground process ) 发送 SIGINT 信号给前台进程组中的所有进程，强制终止程序的执行；
+- ctrl-z: ( suspend foreground process ) 发送 SIGTSTP 信号给前台进程组中的所有进程，常用于挂起一个进程
+- ctrl-d： 一个特殊的二进制值，表示 EOF，作用相当于在终端中输入exit后回车；
+- ctrl-l：清屏幕
+- clear:清除屏幕（与ctrl-l 效果不同）
+- ctrl-s   中断控制台输出
+- ctrl-q   恢复控制台输出
+- jobs：列出后台运行序列号 （ctrl-z 挂起 bg）
+- nohub：不挂断地运行命令
+- &： 后台运行命令
+- fg %num:将挂起的任务放在前台执行
+- bg %num：将挂起的任务放在后台执行
 ### 定时运行-crontab
 - crontab \[-u username]　　　　//省略用户表表示操作当前用户的crontab  
     -e      (编辑工作表)  
