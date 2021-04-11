@@ -9,9 +9,9 @@ catalog: true
 tags:
     - java
 ---
+#### 简单的概念
 
-- 协程
-    - 单线程内函数函数级跳转，python 可通过yield关键字 和 next(func)方法实现 也有greenlet gevent 等模块实现协程
+- 协程    - 单线程内函数函数级跳转，python 可通过yield关键字 和 next(func)方法实现 也有greenlet gevent 等模块实现协程
     - 携程在函数间跳转时会保留现场上下文信息，然后跳转到另外一个函数，一般跳出跳回原函数时机由用户程序控制如 greenlet ,也
     可由模块通过算法判断跳出跳回时机 如gevent
 - 线程
@@ -30,7 +30,37 @@ tags:
     于多个线程，相比于多进程，多线程之间的切换开销要低。
     - 对于协程，一般用于单线程内，IO操作，网络请求操作等耗时，并且不需要CPU守护的程序操作的的切换，用此来提高速度。
     - 总之，一个程序可以有多个进程，一个进程可以有多个线程，一个线程可以在多个协程之间切换。
-- python 协程模块greenlet example
+#### java syncronized
+- 该关键字可以修饰类名 方法名 代码块 修饰代码块时语法： syncronized(资源){代码块;}
+- 修饰类名 表征
+- 修饰非静态方法名
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#### python 协程模块greenlet example
 ```python
         from greenlet import greenlet
         import time
