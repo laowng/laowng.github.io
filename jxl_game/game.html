@@ -1,0 +1,734 @@
+﻿<!DOCTYPE html>
+<html>
+<head>	
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.5, maximum-scale=0.5, user-scalable=0">
+    <style type="text/css">
+      body{
+         text-align: center;
+
+      }
+    	#main {
+    		width: 580px;
+    		height: 580px;
+        border: 10px solid rgb(7, 189, 181);
+        border-radius: 10px;
+        box-shadow:2px 5px  20px rgba(0,0,0,0.5) ;
+        display: inline-block; 
+        
+      }
+    	canvas {
+    		margin: 0px;
+        border: none;
+        vertical-align:middle;   
+
+    	}
+      .imgWrapper{
+        width: 150px;
+        height: 150px;
+        margin: 20px;
+        display: inline-block;
+      }
+      img{
+        width: 100%;
+        height: 100%;  
+        transition: All 0.2s ease-in-out;
+        -webkit-transition: All 0.2s ease-in-out;
+        -moz-transition: All 0.2s ease-in-out;
+        -o-transition: All 0.2s ease-in-out;    
+      }
+      img:hover{
+        transform:  scale(2.5);
+          -webkit-transform:  scale(2.5);
+          -moz-transform:  scale(2.5);
+          -o-transform:  scale(2.5);
+          -ms-transform:  scale(2.5);
+      }
+      p{
+        margin: 0px;
+      }
+      .form{
+        width: 400px;
+        height: 600px;
+        display: inline-block;
+        vertical-align: top;
+        border-radius: 10px;
+        background:url(./bear.jpg) no-repeat;
+        background-size:100% 100%; 
+        box-shadow:2px 5px  20px rgba(0,0,0,0.2);
+        margin: 0 20px;
+      }
+      #main :hover{
+        box-shadow: 2px 5px  20px #000 ;
+      }
+      .choice{
+        display: inline-block;
+        padding: 0 80px;
+      }
+
+      button{
+        
+        margin: 0.5rem 1rem;
+        height: 2rem;
+        width: 5rem;
+        line-height: 2rem;
+        text-align: center;
+        color: rgb(255, 255, 255);
+        font-family: "Microsoft YaHei", normal;
+        cursor: pointer;
+        background: rgb(0,0,0);
+        border-width: 0px;
+        border-radius: 5px;
+        border-style: initial;
+        border-color: initial;
+        border-image: initial;
+      }  
+      #timer{
+        color: red;
+      }
+      #random{
+            transition: All 0.4s ease-in-out;
+            -webkit-transition: All 0.4s ease-in-out;
+            -moz-transition: All 0.4s ease-in-out;
+            -o-transition: All 0.4s ease-in-out;
+      }
+      #random:hover{
+            transform: rotate(360deg);
+            -webkit-transform: rotate(360deg);
+            -moz-transform: rotate(360deg);
+            -o-transform: rotate(360deg);
+            -ms-transform: rotate(360deg);
+      }
+      #easy{
+        background: rgb(18, 70, 180);
+      }
+      #normal{
+        background: rgb(18, 198, 189);
+      } 
+      #difficult{
+        background: rgb(189, 7, 17);
+      }
+      #hard{
+        background: rgb(189, 7, 190);
+      } 
+      .game{
+        margin: 0 auto;
+      }
+      #start{     
+        width: 210px;
+        height: 40px;
+        line-height: 38px;
+        font-size: 22px;
+        background: rgb(7, 189, 181); 
+      }
+      .record{
+        margin: 0.5rem 0.5rem;
+        display: inline-block;
+        color: #ffc009;
+        font-size: 1.2rem;
+      }
+      
+    </style>
+</head>
+    <body>
+      <div class="game">
+    	  <div id="main" class="main">  
+    	   </div>  
+        <div class="form">
+          <h2>党史拼图小游戏</h2>
+          <p></p>
+          <span class="record">简单:9<span id="easyRecord"></span></span>
+          <span class="record">一般:<span id="normalRecord">16</span></span>
+          <span class="record">困难:<span id="difficultRecord">25</span></span>
+          <span class="record">地狱:<span id="hardRecord">64</span></span>
+          <p>剩余时间: <span id="timer">120</span>s</p>
+          <div class="imgWrapper">
+    	       <img src="./imgs/img0.jpg" id="img">
+          </div>
+          <div class="choice" id="choice">
+            <button class="mode" id="easy">简单</button>
+            <button class="mode" id="normal">一般</button>
+            <button class="mode" id="difficult">困难</button>
+            <button class="mode" id="hard">地狱</button>
+            <button class="operate" id="random">打乱</button>
+            <button class="operate"id="change">换图</button>
+            <button class="operate"id="start">开始</button>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+
+      </div>
+    </body>
+    <script>
+      var sign=false;
+      var imgs =[
+        "./imgs/img0.jpg",
+        "./imgs/img1.jpg",
+        "./imgs/img2.jpg",
+        "./imgs/img3.jpg",
+        "./imgs/img4.jpg",
+               "./imgs/img5.jpg",
+        "./imgs/img6.jpg",
+        "./imgs/img7.jpg",
+        "./imgs/img8.jpg",
+        "./imgs/img9.jpg",
+          "./imgs/img10.jpg",
+        "./imgs/img11.jpg",
+        "./imgs/img12.jpg",
+        "./imgs/img13.jpg",
+        "./imgs/img14.jpg",
+          "./imgs/img15.jpg",
+        "./imgs/img16.jpg",
+        "./imgs/img17.jpg",
+        "./imgs/img18.jpg",
+        "./imgs/img19.jpg",
+               "./imgs/img20.jpg",
+        "./imgs/img21.jpg",
+        "./imgs/img22.jpg",
+        "./imgs/img23.jpg",
+        "./imgs/img24.jpg",
+               "./imgs/img25.jpg",
+        "./imgs/img26.jpg",
+        "./imgs/img27.jpg",
+        "./imgs/img28.jpg",
+        "./imgs/img29.jpg",
+          "./imgs/img30.jpg",
+
+      ]
+	  var FLAG=0
+      var EventUtil = {
+          addHandler:function(element,type,handler){
+            if(element.addEventListener){
+              element.addEventListener(type,handler,false);
+            }else if(element.attachEvent){
+              element.attachEvent("on"+type,handler);
+            }else{
+              element["on"+type]=handler;
+            }
+          },
+          removeHandler:function(element,type,handler){
+            if(event.removeEventListener){
+              element.removeEventListener(type,handler,false);
+            }else if(element.detachEvent){
+              element.detachEvent("on"+type,handler);
+            }else{
+              element["on"+type]=null;
+            }
+          },
+          getEvent:function(event){
+            return event?event:window.event;
+          },
+          getTarget:function(event){
+            return event.target||event.srcElement;
+          },
+          preventDefault:function(event){
+            if(event.preventDefault){
+              event.preventDefault();
+            }else{
+              event.returnValue=false;
+            }
+          },
+          stopPropagation:function(event){
+            if(event.stopPropagation){
+              event.stopPropagation();
+            }else{
+              event.cancelBubble=true;
+            }
+          }
+      }
+   		function createBox(id,side,rightX,rightY){
+   			var o=new Object();
+   			o.ID=id;
+   			o.side=side;
+   			o.rightX=rightX;
+   			o.rightY=rightY;
+   			o.posX=rightX;
+   			o.posY=rightY;
+   			o.canvasId=id;
+   			
+   			o.getId=function(){
+   				return this.ID;
+   			}
+   			o.getCanvasId=function(){
+   				return this.canvasId;
+   			}
+   			o.setCanvasId=function(newID){
+   				 this.canvasId=newID;
+   			}
+   			o.getPositionX=function(){
+   				return this.posX;
+   			}
+   			o.getPositionY=function(){
+   				return this.posY;
+   			}
+   			o.setPostionXY=function(x,y){
+   				this.posX=x;
+   				this.posY=y;
+   				//this.dom.style.left=x+"px";
+   				//this.dom.style.top=y+"px";
+   			}
+   			o.check=function(){
+   				if(this.canvasId==this.ID){
+   					return true;
+   				}else{
+   					return false;
+   				}
+   			}
+        
+   			return o;
+   		}
+   		function createWrapper(side,posX,posY,dom){
+   			var o=new Object();
+   			o.side=side;
+   			o.posX=posX;
+   			o.canvasArr=[];
+   			o.posY=posY;
+   			o.dom=dom;
+      
+   			o.init=function(){
+   				dom.style.left=this.posX;
+   				dom.style.top=this.posY;
+   				dom.style.width=this.side;
+   				dom.style.height=this.side;
+   				dom.style.position="relative";
+   			}
+   			o.addCanvas=function(canvas){
+   				this.canvasArr.push(canvas);
+   			}
+   			o.swapBox=function(box1,box2,img){
+   				var canvasID2=box2.getCanvasId();
+   				var canvasID1=box1.getCanvasId();
+   				this.canvasArr[canvasID1].draw(box2,img);
+   				box2.setCanvasId(canvasID1);
+   				this.canvasArr[canvasID2].draw(box1,img);
+   				box1.setCanvasId(canvasID2);
+
+          this.canvasArr[canvasID1].setDomId(box2.getId());
+          this.canvasArr[canvasID2].setDomId(box1.getId());
+   			}
+        o.random=function(boxes,img){          
+           for(var i=0;i<boxes.length;i++){
+              var r1=Math.floor(Math.random()*boxes.length);
+              var r2=Math.floor(Math.random()*boxes.length);
+              this.swapBox(boxes[r1],boxes[r2],img);
+           }
+        }
+   			o.getPosX=function(){
+   				return this.posX;
+   			}
+   			o.getPosY=function(){
+   				return this.posY;
+   			}
+   			o.getSide=function(){
+   				return this.side;
+   			}
+   			return o;
+   		}
+   		function createCanvas(id,side,posX,posY,dom,divDom){
+   			var o=new Object();
+   			o.id=id;
+   			o.side=side;
+   			o.posX=posX;
+   			o.posY=posY;
+   			o.dom=dom;
+        o.divDom=divDom;
+        o.setDomId=function(id){
+          this.divDom.id=id;
+        }
+        o.getDomId=function(){
+          return this.divDom.id;
+        }
+        o.init=function(){
+          dom.width=this.side;
+          dom.height=this.side;
+          divDom.id=id;
+          divDom.style.draggable="true";
+          divDom.style.left=this.posX+"px";
+          divDom.style.top=this.posY+"px";
+          divDom.width=this.side;
+          divDom.height=this.side;
+          divDom.style.border="1px blue solid ";
+          divDom.style.minHeight=this.side+"px";
+          divDom.style.minWidth=this.side+"px";
+          divDom.style.position="absolute";
+        }
+   			
+   			o.draw=function(box,img){
+         
+    			var context=dom.getContext("2d");
+    			context.drawImage(img,box.getPositionX(),box.getPositionY(),side,side,0,0,side,side);
+   			}
+   			return o;
+   		}
+      function check(boxes){
+          for(var i=0;i<boxes.length;i++){
+            if(!boxes[i].check()) return false;
+          }
+          return true;
+      }      
+      function freshDom(){
+          var main=document.createElement("div");
+          main.id="main";
+          main.class="main";
+
+          document.getElementsByClassName("game")[0].replaceChild(main,document.getElementById("main"));
+      }
+      function createRecord(easyDom,normalDom,difficultDom,hardDom){
+        var o=new Object();
+        o.easyDom=easyDom;
+        o.normalDom=normalDom;
+        o.difficultDom=difficultDom;
+        o.hardDom=hardDom;
+        o.showRecord=function(){
+          localStorage.easyRecord?easyDom.firstChild.nodeValue=localStorage.easyRecord:0;
+          localStorage.normalRecord?normalDom.firstChild.nodeValue=localStorage.normalRecord:0;
+          localStorage.difficultRecord?difficultDom.firstChild.nodeValue=localStorage.difficultRecord:0;
+          localStorage.hardRecord?hardDom.firstChild.nodeValue=localStorage.hardRecord:0;
+        }
+        o.savaUserRecord=function(newRecord,n){
+          if(newRecord!=0){
+           switch(n){
+              case 3:
+              if(!localStorage.easyRecord||newRecord<localStorage.easyRecord){
+                localStorage.easyRecord=newRecord;
+                this.showRecord();
+                //easyDom.firstChild.nodeValue=localStorage.easyRecord;
+                
+              }
+              break;
+              case 4:
+              if(!localStorage.normalRecord||newRecord<localStorage.normalRecord){
+                localStorage.normalRecord=newRecord;
+                this.showRecord();
+               // normalDom.firstChild.nodeValue=localStorage.normalRecord;                          
+              }
+              break;
+              case 5:
+              if(!localStorage.difficultRecord||newRecord<localStorage.difficultRecord){
+                localStorage.difficultRecord=newRecord; 
+                this.showRecord();
+               // difficultDom.firstChild.nodeValue=localStorage.difficultRecord;           
+              }
+              break;
+              case 8:
+              if(!localStorage.hardRecord||newRecord<localStorage.hardRecord){
+                localStorage.hardRecord=newRecord;
+                this.showRecord();
+               // hardDom.firstChild.nodeValue=localStorage.hardRecord;
+              }
+              break;
+            }
+          }
+        }
+          return o;
+      }
+      function createTime(timeDom,totalTime){
+        var o=new Object();
+        o.timer=null;
+        o.timeDom=timeDom;
+        o.initTime=totalTime;
+        o.totalTime=totalTime;
+        
+        o.updateClock=function(){
+          if(totalTime>0){
+              totalTime-=1;
+              timeDom.firstChild.nodeValue=totalTime;
+            }else{
+              clearInterval(timer);
+          }
+        }
+        o.startTime=function(time){
+            clearInterval(timer);
+            //totalTime=60;
+            totalTime=time;
+            initTime=time;
+           // timeDom=document.getElementById("timer");
+            timer=setInterval(this.updateClock,1000); 
+        }
+        o.getTotalTime=function(){
+            return totalTime;
+        }
+        o.getInitTime=function(){
+            return this.initTime;
+        }
+        return o;
+      }
+      function createGame(timeObject,recorder){
+          var o=new Object();
+          o.currentBox=null;
+          o.img = null; 
+          o.wrapper=null;
+          o.boxes=null;
+          o.timeObject=timeObject;
+          o.recorder=recorder;
+          o.key=4;
+          o.changeImg=function(){
+            for(var i=0;i<imgs.length;i++){
+              FLAG=Math.floor(Math.random()*imgs.length);
+              img.src=imgs[FLAG];
+            }
+          }
+          o.startTime=function(totalTime){
+            timeObject.startTime(totalTime);
+          }
+          o.init=function(n){                
+            
+            key=n;
+
+            var img = document.getElementById("img"); 
+            var wrapDom=document.getElementById("main");
+            var wrapSide=580;    
+
+            wrapper=new createWrapper(wrapSide,0,0,wrapDom);
+            wrapper.init();
+            var side=wrapSide/n;
+            boxes=[];
+            var  k=0;
+            for(var i=0;i<n;i++){
+              var posY=side*i;
+                for(var j=0;j<n;j++){
+                  var posX=side*j;
+                  var divDom = document.createElement('div');
+                  var canvasDom = document.createElement('canvas');
+                  var canvas=createCanvas(k,side,posX,posY,canvasDom,divDom);
+                  canvas.init();
+                  wrapper.addCanvas(canvas);            
+                  this.addDivAction(divDom);                 
+                  var box=createBox(k,side,posX,posY);
+                  k++;
+                  boxes.push(box);
+                  canvas.draw(box,img);
+                  wrapDom.appendChild(divDom);
+                  wrapDom.appendChild(canvasDom);
+                }
+            } 
+            wrapper.random(boxes,img);        
+          }
+          o.addDivAction=function(divDom){
+                  EventUtil.addHandler(divDom,"touchstart",function(event){
+                    if(sign==false){
+                    currentBox=event.target.id;
+                    sign=true;
+                    }     
+                  });
+                  EventUtil.addHandler(divDom,"touchend",function(event){
+                    if(currentBox!=event.target.id&&sign==true){
+                       wrapper.swapBox(boxes[currentBox],boxes[event.target.id],img);
+                       var totalTime=timeObject.getTotalTime();
+                       var initTime=timeObject.getInitTime();
+                      if(totalTime>0&&check(boxes)){
+                        recorder.savaUserRecord(initTime-totalTime,key);
+                          if (FLAG == 0) {
+                              alert("计科院学生第三党支部欢迎您！！")
+
+
+                          } else if (FLAG == 1) {
+                              alert("《五四运动 唤醒民众》 五四运动1919年5月4日，是一场发生于中国北京以青年学生为主的学生运动，以及包括广大群众、市民、工商人士等中下阶层广泛参与的一次示威游行、请愿、罢课、罢工、暴力对抗政府等多形式的爱国运动。 五四运动是中国旧民主主义革命的结束和新民主主义革命的开端。");
+                          } else if (FLAG == 2) {
+                              alert("《首译宣言 传播真理》 1848年《共产党宣言》问世，标志着马克思主义的正式诞生。但是，多数人却并不知道，它的第一个中译本是在浙江一个小山村里诞生的，马克思主义在中国的传播并不是一帆风顺的。五四运动前后，中国正处在时局大动荡和思想大解放的状态，各种新思潮来势汹涌，冲开了传统的思想禁锢，围绕对马克思主义的不同态度，那几年里知识界先后发生了三次论争。通过三次论争，马克思主义理论脱颖而出，成为新思潮中的主流。一批先进的知识分子在论争中廓清了思想上的迷雾，逐步划清了马克思主义与非马克思主义的界限，成为坚定的马克思主义者。");
+                          } else if (FLAG == 3) {
+                              alert("《南湖红船 开天辟地》 “开天辟地、敢为人先的首创精神，坚定理想、百折不挠的奋斗精神，立党为公、忠诚为民的奉献精神，是中国革命精神之源，也是‘红船精神’的深刻内涵。中共一大会议闭幕时，代表们轻呼出时代的强音：共产党万岁！世界劳工万岁！第三国际万岁！共产主义万岁！");
+                          } else if (FLAG == 4) {
+                              alert("《国共合作 共创大业》 第一次国共合作，即在大革命时期，中国共产党同中国国民党首次建立的合作。1924年1月20日至30日，中国国民党第一次全国代表大会在广东召开。大会通过了新的党章，改组了国民党组织，选举了有共产党员参加的新一届中国国民党中央领导机构，重新解释了三民主义，形成了“联俄、联共、扶助农工”等重大政策，实现了第一次国共合作，也是国共合作的首发地。");
+                          } else if (FLAG == 5) {
+                              alert("《南昌起义 八七定向》 南昌武装起义是对国民党反动派屠杀政策的反抗，1927年4月12日，蒋介石在上海发动反革命政变，向群众举起屠刀，随后各地反动势力也纷纷以“清党”为民，大肆捕杀共产党员和革命群众。中国共产党随后在8月1日，发动南昌起义，打响武装反抗国民党反动派的第一枪，随后召开八七会议，从此中国共产党开始了创建人民军队独立领导武装斗争的光辉历程。");
+                          } else if (FLAG == 6) {
+                              alert("《秋收暴动 开辟井岗》 秋收起义是1927年9月9日，由毛泽东在湖南东部和江西西部领导的工农革命军举行的一次武装起义，是继南昌起义之后，中国共产党领导的又一次著名的武装起义。虽然秋收起义最初的目标是攻占湖南长沙，但随着起义过程中，敌强我弱的态势愈发显著，起义领导人毛泽东决定，带领部队在井冈山开辟农村革命根据地，从而保存有生力量，逐渐壮大队伍，这一举措也为中国革命找到了一条崭新的道路。");
+                          } else if (FLAG == 7) {
+                              alert("《朱毛会师 组件劲旅》 朱毛会师是中国革命史上的一个重大事件，对中央苏区的开创具有重大而深远的意义。在南昌起义失败后，朱德、陈毅领导的一路起义部队，四处征战、不断转移，损失惨重。此时，休整部队已成为最迫切的事情。最终，朱德、陈毅决定，也将起义部队开往井冈山。朱毛红军的会师，是中国工农红军发展史上的一件大事。朱德率领的南昌起义军余部是一支具有很强战斗力的北伐劲旅，是以叶挺独立团为基础形成的，有两千多人，近千支枪，训练严格，装备齐整，作战有经验。他们的到来，大大增强了井冈山革命根据地的实力。");
+                          } else if (FLAG == 8) {
+                              alert("《古田丰碑 奠定军魂》 1929年12月28日至29日，中国工农红军第四军第九次党的代表大会即著名的古田会议，在福建省上杭县古田村召开。古田会议解决了如何把一支以农民为主要成分的军队建设成为共产党领导下的新型人民军队的问题，它所确定的着重从思想上建党和从政治上建军的原则，为后来的农村包围城市、武装夺取政权道路思想的形成、发展和成功实践奠定了基础。古田会议因此成为我党我军建设史上的重要里程碑，具有深远的历史意义和重要的现实意义。");
+                          } else if (FLAG == 9) {
+                              alert("《血战湘江 遵义转折》 遵义会议结束了王明“左”倾冒险主义在中共中央的统治，确立了以毛泽东为代表的新的中央的正确领导。这次会议是中国共产党第一次独立自主地运用马克思列宁主义基本原理解决自己的路线、方针和政策的会议。它在极端危险的时刻，挽救了党和红军，是中国共产党历史上一个生死攸关的转折点，标志着中国共产党从幼年达到成熟。");
+                          } else if (FLAG == 10) {
+                              alert("《两万五千里长征》 长征是人类历史上的伟大奇迹，中央红军共进行了380余次战斗，攻占700多座县城，红军牺牲了营以上干部多达430余人，平均年龄不到30岁，共击溃国民党军数百个团，期间共经过14个省，翻越18座大山，跨过24条大河，走过荒草地，翻过雪山，行程约二万五千里，红一方面军于1935年10月到达陕北，与陕北红军胜利会师。1936年10月，红二、四方面军到达甘肃会宁地区，同红一方面军会师。红军三大主力会师，标志着万里长征的胜利结束。");
+                          } else if (FLAG == 11) {
+                              alert("《雄关漫道 三军会师》 遵义会议之后，中央红军在长征途中，处于国民党几十万重兵围追堵截的艰险条件下，红军四渡赤水，粉碎了蒋介石等反动派企图围歼红军于川黔滇边境的计划。中央红军渡过金沙江后，中共中央、中央军委率领红一方面军主力到达懋功，与前来接应的红四方面军会师。中央红军商量对策，陕甘支队先行北上，红军三大主力胜利会师于甘肃会宁。");
+                          } else if (FLAG == 12) {
+                              alert("《抗日战争》 抗日战争指20世纪中期第二次世界大战中，中国抵抗日本侵略的一场民族性的全面战争。国际上称作第二次中日战争、 日本侵华战争。抗战时间从1931年9月18日九一八事变开始算起，至1945年9月2日结束，共14年抗战。");
+                          } else if (FLAG == 13) {
+                              alert("《西安事变 一致抗日》 1936年12月12日，为挽救民族危亡、劝谏蒋介石改变“攘外必先安内”的既定国策、停止内战一致抗日，张学良、杨虎城毅然在临潼对蒋介石实行“兵谏”，扣留来陕督战的蒋介石，发动了震惊中外的“西安事变”，亦称双十二事变。提出抗日救国八项政治主张，逼蒋介石抗日。1936年12月25日，在中共中央和周恩来等人的努力下，蒋介石接受“停止内战、联共抗日”等六项主张，为“西安事变”的和平解决奠定了基础。");
+                          } else if (FLAG == 14) {
+                              alert("《百团大战 振奋人心》 百团大战是抗战时期中国工农红军主动出击日军的一次最大规模的战役，它打出了敌后抗日军民的声威，振奋了全国人民争取抗战胜利的信心，在战略上有力地支持了国民党正面战场。百团大战的胜利，沉重打击了日寇的嚣张气焰，鼓舞了中国人民的抗战斗志，在我国抗日战争史上写下了光辉的一页，在国际上也产生了巨大的影响。");
+                          } else if (FLAG == 15) {
+                              alert("《平型关大捷》 平型关大捷（又称平型关战斗、平型关伏击战），是指1937年9月25日，八路军在平型关为了配合第二战区的友军作战，阻挡日军攻势，由115师师长林彪、副师长聂荣臻指挥，充分发挥近战和山地战的特长，首次集中较大兵力对日军进行的一次成功伏击战，八路军在平型关取得首战大捷。");
+                          } else if (FLAG == 16) {
+                              alert("《日本投降 抗战胜利》 日本投降是指1945年8月15日正午，日本天皇向全日本广播，接受波茨坦公告、实行无条件投降，结束战争。1945年8月21日今井武夫飞抵芷江洽降。1945年9月2日上午9时，标志着第二次世界大战结束的日本投降的签字仪式，在停泊在东京湾的密苏里号主甲板上举行。日本外相重光葵代表日本天皇和政府、陆军参谋长梅津美治郎代表日军大本营在投降书上签字。1945年9月9日上午，中国战区受降仪式在中国南京中央军校大礼堂举行。1945年10月25日，中国国民政府在台湾举行受降仪式，这成为抗日战争取得完全胜利的重要标志。");
+                          } else if (FLAG == 17) {
+                              alert("《攻占总统府》 该画作展现了宏大的历史场面，塑造了一组不同年龄、不同经历和性格的普通战士群像。威武的战士们向红旗行注目礼，广阔的背景硝烟弥漫，人民解放军的洪流势如破竹、冲进总统府，直捣敌人的老巢。画面具有浓郁历史感和使命感，形象的真实性、独特的表现魅力和审美追求交织在一起，使其产生巨大的社会影响力。它所表现出来的艺术成就，在中国油画史上占有十分重要的地位。");
+                          } else if (FLAG == 18) {
+                              alert("《协商建国 人民当家》 中国共产党领导全国各族人民，推翻了压在人民头上的帝国主义、封建主义和官僚资本主义三座大山，取得新民主主义革命的胜利并建立了中华人民共和国，新中国的成立，开辟了中国历史的新纪元，从此，中国结束了一百多年来被侵略被奴役的屈辱历史，真正成为了独立自主的国家，中国人民从此站起来了，成为国家的主人。壮大了世界和平、民主和社会主义的力量，鼓舞了世界被压迫民族和被压迫人民争取解放的斗争。");
+                          } else if (FLAG == 19) {
+                              alert("《土地改革 保家保田》 土地改革是中国人民在中国共产党领导下，彻底铲除封建剥削制度的一场深刻的社会革命，是中国民主革命的一项基本任务。中国共产党在民主革命时期，就提出了彻底的土地革命纲领，领导了解放区的土地改革。新中国成立前，占全国面积约三分之一的东北、华北等老解放区已基本完成土地改革，消灭了封建剥削制度。");
+                          } else if (FLAG == 20) {
+                              alert("《抗美援朝 保家卫国》 抗美援朝，又称抗美援朝运动或抗美援朝战争，是20世纪50年代初爆发的朝鲜战争的一部分，仅指中国人民志愿军参战的阶段，也包括中国人民支援朝鲜人民抗击美国侵略的群众性运动。");
+                          } else if (FLAG == 21) {
+                              alert("《社会主义改造》 中国的社会主义改造，即社会主义三大改造，是指中华人民共和国建立初期，中国共产党在全国范围内组织的对于农业、手工业和资本主义工商业进行的社会主义改造。中国的社会主义改造实现了把生产资料私有制转变为社会主义公有制的任务，丰富和发展了马克思列宁主义的科学社会主义理论。");
+                          } else if (FLAG == 22) {
+                              alert("《小岗村 大包干》 1978年12月的一个冬夜，在小岗村一间破旧的茅草屋里，18个衣衫褴褛的村民聚集在一起，就着昏黄的油灯，在一纸分田到户的“秘密契约”上按下鲜红的手印，实行农业“大包干”，拉开中国农村改革的序幕。");
+                          } else if (FLAG == 23) {
+                              alert("《向雷锋同志学习》 雷锋精神是新中国成立以来无时无刻不熏陶鼓舞中国人祖祖辈辈的做人法则，深入贯彻了以爱国主义为核心的团结统一爱好和平勤劳勇敢自强不息的伟大的民族精神，中国梦的实现，需要雷锋精神才能在两个百年之际怦然落地。");
+                          } else if (FLAG == 24) {
+                              alert("《两弹一星 扬眉吐气》 20世纪50年代、60年代是极不寻常的时期，当时面对严峻的国际形势，为抵制帝国主义的武力威胁和核讹诈，50年代中期，以毛泽东同志为核心的第一代党中央领导集体，根据当时的国际形势，为了保卫国家安全、维护世界和平，高瞻远瞩，果断地作出了独立自主研制“两弹一星”的战略决策。大批优秀的科技工作者，包括许多在国外已经有杰出成就的科学家，以身许国，怀着对新中国的满腔热爱，响应党和国家的召唤，义无反顾地投身到这一神圣而伟大的事业中来。");
+                          } else if (FLAG == 25) {
+                              alert("《十一届三中全会》 党的十一届三中全会冲破长期“左”的错误的严重束缚，批评“两个凡是”的错误方针，充分肯定必须完整、准确地掌握毛泽东思想的科学体系，高度评价关于真理标准问题的讨论，果断结束“以阶级斗争为纲”，重新确立马克思主义的思想路线、政治路线、组织路线。");
+                          } else if (FLAG == 26) {
+                              alert("《北京奥运会》 2008年北京奥运会使中国日益自信，大国心态和风范亦得到塑造和锤炼。北京奥运会圆了中国的百年梦想，使中国更加开放，更加进步。北京奥运会后的中国，更加致力于和平的发展、开放的发展、合作的发展，致力于同世界各国人民一道，建设持久和平、共同繁荣的和谐世界。");
+                          		
+					  
+                       
+				      } 
+                      }else if(totalTime==0){
+                        alert("超时,挑战失败！");
+                      }
+                      sign=false;
+                    }     
+                  });
+                  EventUtil.addHandler(divDom,"dragstart",function(event){
+                    currentBox=event.target.id;      
+                  });
+                  EventUtil.addHandler(divDom,"dragover",function(event){
+                    EventUtil.preventDefault(event);
+                  });
+                  EventUtil.addHandler(divDom,"dragenter",function(event){
+                    EventUtil.preventDefault(event);
+                  });
+                  EventUtil.addHandler(divDom,"drop",function(event){
+                    EventUtil.preventDefault(event);
+                      wrapper.swapBox(boxes[currentBox],boxes[event.target.id],img);
+                      var totalTime=timeObject.getTotalTime();
+                      var initTime=timeObject.getInitTime();
+                      if(check(boxes)&&totalTime>0){
+						    recorder.savaUserRecord(initTime-totalTime,key);
+					        if(FLAG==0){
+								alert("计科院学生第三党支部欢迎您！！")
+						 
+							     
+                          } else if (FLAG == 1) {
+                              alert("《五四运动 唤醒民众》 五四运动1919年5月4日，是一场发生于中国北京以青年学生为主的学生运动，以及包括广大群众、市民、工商人士等中下阶层广泛参与的一次示威游行、请愿、罢课、罢工、暴力对抗政府等多形式的爱国运动。 五四运动是中国旧民主主义革命的结束和新民主主义革命的开端。");
+                          } else if (FLAG == 2) {
+                              alert("《首译宣言 传播真理》 1848年《共产党宣言》问世，标志着马克思主义的正式诞生。但是，多数人却并不知道，它的第一个中译本是在浙江一个小山村里诞生的，马克思主义在中国的传播并不是一帆风顺的。五四运动前后，中国正处在时局大动荡和思想大解放的状态，各种新思潮来势汹涌，冲开了传统的思想禁锢，围绕对马克思主义的不同态度，那几年里知识界先后发生了三次论争。通过三次论争，马克思主义理论脱颖而出，成为新思潮中的主流。一批先进的知识分子在论争中廓清了思想上的迷雾，逐步划清了马克思主义与非马克思主义的界限，成为坚定的马克思主义者。");
+                          } else if (FLAG == 3) {
+                              alert("《南湖红船 开天辟地》 “开天辟地、敢为人先的首创精神，坚定理想、百折不挠的奋斗精神，立党为公、忠诚为民的奉献精神，是中国革命精神之源，也是‘红船精神’的深刻内涵。中共一大会议闭幕时，代表们轻呼出时代的强音：共产党万岁！世界劳工万岁！第三国际万岁！共产主义万岁！");
+                          } else if (FLAG == 4) {
+                              alert("《国共合作 共创大业》 第一次国共合作，即在大革命时期，中国共产党同中国国民党首次建立的合作。1924年1月20日至30日，中国国民党第一次全国代表大会在广东召开。大会通过了新的党章，改组了国民党组织，选举了有共产党员参加的新一届中国国民党中央领导机构，重新解释了三民主义，形成了“联俄、联共、扶助农工”等重大政策，实现了第一次国共合作，也是国共合作的首发地。");
+                          } else if (FLAG == 5) {
+                              alert("《南昌起义 八七定向》 南昌武装起义是对国民党反动派屠杀政策的反抗，1927年4月12日，蒋介石在上海发动反革命政变，向群众举起屠刀，随后各地反动势力也纷纷以“清党”为民，大肆捕杀共产党员和革命群众。中国共产党随后在8月1日，发动南昌起义，打响武装反抗国民党反动派的第一枪，随后召开八七会议，从此中国共产党开始了创建人民军队独立领导武装斗争的光辉历程。");
+                          } else if (FLAG == 6) {
+                              alert("《秋收暴动 开辟井岗》 秋收起义是1927年9月9日，由毛泽东在湖南东部和江西西部领导的工农革命军举行的一次武装起义，是继南昌起义之后，中国共产党领导的又一次著名的武装起义。虽然秋收起义最初的目标是攻占湖南长沙，但随着起义过程中，敌强我弱的态势愈发显著，起义领导人毛泽东决定，带领部队在井冈山开辟农村革命根据地，从而保存有生力量，逐渐壮大队伍，这一举措也为中国革命找到了一条崭新的道路。");
+                          } else if (FLAG == 7) {
+                              alert("《朱毛会师 组件劲旅》 朱毛会师是中国革命史上的一个重大事件，对中央苏区的开创具有重大而深远的意义。在南昌起义失败后，朱德、陈毅领导的一路起义部队，四处征战、不断转移，损失惨重。此时，休整部队已成为最迫切的事情。最终，朱德、陈毅决定，也将起义部队开往井冈山。朱毛红军的会师，是中国工农红军发展史上的一件大事。朱德率领的南昌起义军余部是一支具有很强战斗力的北伐劲旅，是以叶挺独立团为基础形成的，有两千多人，近千支枪，训练严格，装备齐整，作战有经验。他们的到来，大大增强了井冈山革命根据地的实力。");
+                          } else if (FLAG == 8) {
+                              alert("《古田丰碑 奠定军魂》 1929年12月28日至29日，中国工农红军第四军第九次党的代表大会即著名的古田会议，在福建省上杭县古田村召开。古田会议解决了如何把一支以农民为主要成分的军队建设成为共产党领导下的新型人民军队的问题，它所确定的着重从思想上建党和从政治上建军的原则，为后来的农村包围城市、武装夺取政权道路思想的形成、发展和成功实践奠定了基础。古田会议因此成为我党我军建设史上的重要里程碑，具有深远的历史意义和重要的现实意义。");
+                          } else if (FLAG == 9) {
+                              alert("《血战湘江 遵义转折》 遵义会议结束了王明“左”倾冒险主义在中共中央的统治，确立了以毛泽东为代表的新的中央的正确领导。这次会议是中国共产党第一次独立自主地运用马克思列宁主义基本原理解决自己的路线、方针和政策的会议。它在极端危险的时刻，挽救了党和红军，是中国共产党历史上一个生死攸关的转折点，标志着中国共产党从幼年达到成熟。");
+                          } else if (FLAG == 10) {
+                              alert("《两万五千里长征》 长征是人类历史上的伟大奇迹，中央红军共进行了380余次战斗，攻占700多座县城，红军牺牲了营以上干部多达430余人，平均年龄不到30岁，共击溃国民党军数百个团，期间共经过14个省，翻越18座大山，跨过24条大河，走过荒草地，翻过雪山，行程约二万五千里，红一方面军于1935年10月到达陕北，与陕北红军胜利会师。1936年10月，红二、四方面军到达甘肃会宁地区，同红一方面军会师。红军三大主力会师，标志着万里长征的胜利结束。");
+                          } else if (FLAG == 11) {
+                              alert("《雄关漫道 三军会师》 遵义会议之后，中央红军在长征途中，处于国民党几十万重兵围追堵截的艰险条件下，红军四渡赤水，粉碎了蒋介石等反动派企图围歼红军于川黔滇边境的计划。中央红军渡过金沙江后，中共中央、中央军委率领红一方面军主力到达懋功，与前来接应的红四方面军会师。中央红军商量对策，陕甘支队先行北上，红军三大主力胜利会师于甘肃会宁。");
+                          } else if (FLAG == 12) {
+                              alert("《抗日战争》 抗日战争指20世纪中期第二次世界大战中，中国抵抗日本侵略的一场民族性的全面战争。国际上称作第二次中日战争、 日本侵华战争。抗战时间从1931年9月18日九一八事变开始算起，至1945年9月2日结束，共14年抗战。");
+                          } else if (FLAG == 13) {
+                              alert("《西安事变 一致抗日》 1936年12月12日，为挽救民族危亡、劝谏蒋介石改变“攘外必先安内”的既定国策、停止内战一致抗日，张学良、杨虎城毅然在临潼对蒋介石实行“兵谏”，扣留来陕督战的蒋介石，发动了震惊中外的“西安事变”，亦称双十二事变。提出抗日救国八项政治主张，逼蒋介石抗日。1936年12月25日，在中共中央和周恩来等人的努力下，蒋介石接受“停止内战、联共抗日”等六项主张，为“西安事变”的和平解决奠定了基础。");
+                          } else if (FLAG == 14) {
+                              alert("《百团大战 振奋人心》 百团大战是抗战时期中国工农红军主动出击日军的一次最大规模的战役，它打出了敌后抗日军民的声威，振奋了全国人民争取抗战胜利的信心，在战略上有力地支持了国民党正面战场。百团大战的胜利，沉重打击了日寇的嚣张气焰，鼓舞了中国人民的抗战斗志，在我国抗日战争史上写下了光辉的一页，在国际上也产生了巨大的影响。");
+                          } else if (FLAG == 15) {
+                              alert("《平型关大捷》 平型关大捷（又称平型关战斗、平型关伏击战），是指1937年9月25日，八路军在平型关为了配合第二战区的友军作战，阻挡日军攻势，由115师师长林彪、副师长聂荣臻指挥，充分发挥近战和山地战的特长，首次集中较大兵力对日军进行的一次成功伏击战，八路军在平型关取得首战大捷。");
+                          } else if (FLAG == 16) {
+                              alert("《日本投降 抗战胜利》 日本投降是指1945年8月15日正午，日本天皇向全日本广播，接受波茨坦公告、实行无条件投降，结束战争。1945年8月21日今井武夫飞抵芷江洽降。1945年9月2日上午9时，标志着第二次世界大战结束的日本投降的签字仪式，在停泊在东京湾的密苏里号主甲板上举行。日本外相重光葵代表日本天皇和政府、陆军参谋长梅津美治郎代表日军大本营在投降书上签字。1945年9月9日上午，中国战区受降仪式在中国南京中央军校大礼堂举行。1945年10月25日，中国国民政府在台湾举行受降仪式，这成为抗日战争取得完全胜利的重要标志。");
+                          } else if (FLAG == 17) {
+                              alert("《攻占总统府》 该画作展现了宏大的历史场面，塑造了一组不同年龄、不同经历和性格的普通战士群像。威武的战士们向红旗行注目礼，广阔的背景硝烟弥漫，人民解放军的洪流势如破竹、冲进总统府，直捣敌人的老巢。画面具有浓郁历史感和使命感，形象的真实性、独特的表现魅力和审美追求交织在一起，使其产生巨大的社会影响力。它所表现出来的艺术成就，在中国油画史上占有十分重要的地位。");
+                          } else if (FLAG == 18) {
+                              alert("《协商建国 人民当家》 中国共产党领导全国各族人民，推翻了压在人民头上的帝国主义、封建主义和官僚资本主义三座大山，取得新民主主义革命的胜利并建立了中华人民共和国，新中国的成立，开辟了中国历史的新纪元，从此，中国结束了一百多年来被侵略被奴役的屈辱历史，真正成为了独立自主的国家，中国人民从此站起来了，成为国家的主人。壮大了世界和平、民主和社会主义的力量，鼓舞了世界被压迫民族和被压迫人民争取解放的斗争。");
+                          } else if (FLAG == 19) {
+                              alert("《土地改革 保家保田》 土地改革是中国人民在中国共产党领导下，彻底铲除封建剥削制度的一场深刻的社会革命，是中国民主革命的一项基本任务。中国共产党在民主革命时期，就提出了彻底的土地革命纲领，领导了解放区的土地改革。新中国成立前，占全国面积约三分之一的东北、华北等老解放区已基本完成土地改革，消灭了封建剥削制度。");
+                          } else if (FLAG == 20) {
+                              alert("《抗美援朝 保家卫国》 抗美援朝，又称抗美援朝运动或抗美援朝战争，是20世纪50年代初爆发的朝鲜战争的一部分，仅指中国人民志愿军参战的阶段，也包括中国人民支援朝鲜人民抗击美国侵略的群众性运动。");
+                          } else if (FLAG == 21) {
+                              alert("《社会主义改造》 中国的社会主义改造，即社会主义三大改造，是指中华人民共和国建立初期，中国共产党在全国范围内组织的对于农业、手工业和资本主义工商业进行的社会主义改造。中国的社会主义改造实现了把生产资料私有制转变为社会主义公有制的任务，丰富和发展了马克思列宁主义的科学社会主义理论。");
+                          } else if (FLAG == 22) {
+                              alert("《小岗村 大包干》 1978年12月的一个冬夜，在小岗村一间破旧的茅草屋里，18个衣衫褴褛的村民聚集在一起，就着昏黄的油灯，在一纸分田到户的“秘密契约”上按下鲜红的手印，实行农业“大包干”，拉开中国农村改革的序幕。");
+                          } else if (FLAG == 23) {
+                              alert("《向雷锋同志学习》 雷锋精神是新中国成立以来无时无刻不熏陶鼓舞中国人祖祖辈辈的做人法则，深入贯彻了以爱国主义为核心的团结统一爱好和平勤劳勇敢自强不息的伟大的民族精神，中国梦的实现，需要雷锋精神才能在两个百年之际怦然落地。");
+                          } else if (FLAG == 24) {
+                              alert("《两弹一星 扬眉吐气》 20世纪50年代、60年代是极不寻常的时期，当时面对严峻的国际形势，为抵制帝国主义的武力威胁和核讹诈，50年代中期，以毛泽东同志为核心的第一代党中央领导集体，根据当时的国际形势，为了保卫国家安全、维护世界和平，高瞻远瞩，果断地作出了独立自主研制“两弹一星”的战略决策。大批优秀的科技工作者，包括许多在国外已经有杰出成就的科学家，以身许国，怀着对新中国的满腔热爱，响应党和国家的召唤，义无反顾地投身到这一神圣而伟大的事业中来。");
+                          } else if (FLAG == 25) {
+                              alert("《十一届三中全会》 党的十一届三中全会冲破长期“左”的错误的严重束缚，批评“两个凡是”的错误方针，充分肯定必须完整、准确地掌握毛泽东思想的科学体系，高度评价关于真理标准问题的讨论，果断结束“以阶级斗争为纲”，重新确立马克思主义的思想路线、政治路线、组织路线。");
+                          } else if (FLAG == 26) {
+                              alert("《北京奥运会》 2008年北京奥运会使中国日益自信，大国心态和风范亦得到塑造和锤炼。北京奥运会圆了中国的百年梦想，使中国更加开放，更加进步。北京奥运会后的中国，更加致力于和平的发展、开放的发展、合作的发展，致力于同世界各国人民一道，建设持久和平、共同繁荣的和谐世界。");
+                          	
+							
+					  
+                       
+				      }
+					
+
+					   }else if(totalTime==0){
+                        alert("超时,挑战失败！");
+                      }
+                  });
+          }
+          return o;
+      }        
+      function createButtons(buttonDiv,game){
+        var o=new Object(); 
+        o.buttonDiv=buttonDiv;
+        o.game=game;
+        o.clickHandler=function(event){            
+            switch(event.target.id){
+                  case "easy":
+                    freshDom();
+                    game.init(3);
+                    break;
+                  case "normal":
+                    freshDom();
+                    game.init(4);
+                    break;
+                  case "difficult":
+                    freshDom();
+                    game.init(5);
+                    break;
+                  case "hard":
+                    freshDom();
+                    game.init(8);
+                    break;
+                  case "random":
+                    wrapper.random(boxes,img);
+                    break;
+                  case "change":
+                    game.changeImg();
+                    break;
+                  case "start":
+                    game.startTime(120);
+                    wrapper.random(boxes,img);
+                    break;
+            };      
+        }  
+        o.init=function(){
+          EventUtil.addHandler(buttonDiv,"click",this.clickHandler)
+        }
+        return o;
+      }
+    	window.onload=function(){
+
+        var timeDom=document.getElementById("timer"); 
+        var timeObject=createTime(timeDom,120);  
+
+        var easyDom=document.getElementById("easyRecord");
+        var normalDom=document.getElementById("normalRecord");
+        var difficultDom=document.getElementById("difficultRecord");
+        var hardDom=document.getElementById("hardRecord");
+        var recorder=createRecord(easyDom,normalDom,difficultDom,hardDom);
+
+        var game=createGame(timeObject,recorder);
+        game.init(4);
+
+        var buttonDiv=document.getElementById("choice");
+        var buttons=createButtons(buttonDiv,game);
+        buttons.init();       
+        recorder.showRecord();
+    	}
+    </script>
+    </body>
+</html>
