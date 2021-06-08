@@ -64,8 +64,7 @@ tags:
 ### pip
 1. 环境输出
     ```bash
-    pip freeze > requirements.txt
-    pip list --format=freeze > requirements.txt     
+    pip freeze > requirements.txt      
     ```
 2. 环境安装
     ```bash
