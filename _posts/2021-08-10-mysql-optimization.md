@@ -22,7 +22,7 @@ mysqld --defaults-file='my.ini 路径'
 mysqld --install "MySql80" --defaults-file="my.ini 路径"
 ```
 
-- 下面说的优化基于 MySQL 5.6，理论上 5.5 之后的都算适用，具体还是要看官网
+# 下面说的优化基于 MySQL 5.6，理论上 5.5 之后的都算适用，具体还是要看官网
 
 
 ## 优秀材料
