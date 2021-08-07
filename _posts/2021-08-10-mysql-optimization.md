@@ -12,6 +12,15 @@ tags:
 
 # MySQL 优化
 
+## Mysql 找不到my.ini文件
+- 在安装mysql时如果没有配置my.ini文件  可以使用mysqld重新绑定，命令为：
+```cmd
+mysqld --defaults-file='my.ini 路径'
+```
+- 安装时配置my.ini文件
+```cmd
+mysqld --install "MySql80" --defaults-file="my.ini 路径"
+```
 
 - 下面说的优化基于 MySQL 5.6，理论上 5.5 之后的都算适用，具体还是要看官网
 
