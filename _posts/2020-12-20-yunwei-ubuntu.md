@@ -74,5 +74,6 @@ tags:
     |0,30 18-23 * * * service httpd restart|每天18点到23点 每隔30分钟 重启httpd服务|
     |0-59/30 18-23 * * * service httpd restart|每天18点到23点 每隔30分钟 重启httpd服务|
     |59 1 1-7 4 * test 'date +\\%w' -eq 0 && /root/a.sh|四月的第一个星期日 01:59 分运行脚本 /root/a.sh ，命令中的 test是判断，%w是数字的星期几|
+### 系统服务systemd
 
 
