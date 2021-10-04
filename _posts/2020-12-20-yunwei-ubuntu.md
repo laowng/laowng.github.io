@@ -10,7 +10,15 @@ tags:
     - 运维
 ---
 
-### ubuntu环境配置文件
+## 目录
+- [环境变量](#环境变量)
+- [标准输出和错误输出](#标准输出和错误输出)
+- [标准输出和错误输出](#常用命令)
+- [定时运行-crontab](#定时运行-crontab)
+- [系统服务工具systemd](#系统服务工具systemd)
+
+<a name="环境变量"></a>
+### 环境变量
 - /etc/profile
   - 此文件为系统的每个用户设置环境信息,当用户第一次登录时,该文件被执行.并从/etc/profile.d目录的配置文件中搜集shell的设置.
   所以如果你有对/etc/profile有修改的话必须得重启你的修改才会生效，此修改对每个用户都生效。
@@ -21,11 +29,23 @@ tags:
   - 每个用户都可使用该文件输入专用于当前用户使用的shell信息,当用户登录时,该文件仅仅执行一次!默认情况下,他设置一些环境变量,执行用户的.bashrc文件.
 - ~/.bashrc
   - 该文件包含专用于你的bash shell的bash信息,当登录时以及每次打开新的shell时,该文件被读取.
+- set，env，export
 
-### 终端标准输出和错误输出
+    |命令|说明|
+    |:---:|---|
+    |set|用来显示本地变量, 环境变量|
+    |env|用来显示环境变量|
+    |export|用来显示和设置环境变量，声明的变量可以被子shell继承，直接声明的变量则不行|
+
+
+
+<a name="标准输出和错误输出"></a>
+### 标准输出和错误输出
 - command 1 > fielname 把把标准输出重定向到一个文件中
 - command > filename 2>&1 把把标准输出和标准错误一起重定向到一个文件中
-### bash常用命令
+
+<a name="常用命令"></a>
+### 常用命令
 - ctrl-c: ( kill foreground process ) 发送 SIGINT 信号给前台进程组中的所有进程，强制终止程序的执行；
 - ctrl-z: ( suspend foreground process ) 发送 SIGTSTP 信号给前台进程组中的所有进程，常用于挂起一个进程
 - ctrl-d： 一个特殊的二进制值，表示 EOF，作用相当于在终端中输入exit后回车；
@@ -38,6 +58,8 @@ tags:
 - &： 后台运行命令
 - fg %num:将挂起的任务放在前台执行
 - bg %num：将挂起的任务放在后台执行
+
+<a name="定时运行-crontab"></a>
 ### 定时运行-crontab
 - crontab \[-u username]　　　　//省略用户表表示操作当前用户的crontab  
     -e      (编辑工作表)  
@@ -74,6 +96,6 @@ tags:
     |0,30 18-23 * * * service httpd restart|每天18点到23点 每隔30分钟 重启httpd服务|
     |0-59/30 18-23 * * * service httpd restart|每天18点到23点 每隔30分钟 重启httpd服务|
     |59 1 1-7 4 * test 'date +\\%w' -eq 0 && /root/a.sh|四月的第一个星期日 01:59 分运行脚本 /root/a.sh ，命令中的 test是判断，%w是数字的星期几|
-### 系统服务systemd
 
-
+<a name="系统服务工具systemd"></a>
+### 系统服务工具systemd
