@@ -1351,7 +1351,7 @@ code, kbd, pre, samp {
 
 footer {
     font-size: 20px;
-    padding: 50px 0 65px
+    padding: 50px 0 0px
 }
 
 footer .list-inline {
