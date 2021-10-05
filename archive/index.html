@@ -2,7 +2,7 @@
 title: Archive
 layout: default
 description: keep hungry keep foolish
-header-img: "https://img02.sogoucdn.com/app/a/201025/dd60a63595a4a61f159347c57ab68289"
+header-img: /img/bg-fall-1.png
 ---
 
 <!-- 
@@ -86,26 +86,18 @@ https://github.com/kitian616/jekyll-TeXt-theme
 
 </div>
 
-<!-- 文章打赏功能 支持支付宝、微信打赏-->
-<script src='{{ "/js/ds.js" | prepend: site.baseurl }}'></script>
+<!--Tags展示-->
+<!-- jquery.tagcloud.js -->
 <script>
-    new tctip({
-        top: '20%',
-        button: {
-            id: 6,
-            type: 'dashang'
-        },
-        list: [
-            {
-                type: 'alipay',
-                qrImg: '{{site.alipay_qr_img}}'
-            }, {
-                type: 'wechat',
-                qrImg: '{{site.wechat_qr_img}}'
-            }
-        ]
-    }).init()
+    async('{{ "/js/jquery.tagcloud.js" | prepend: site.baseurl }}',function(){
+        $.fn.tagcloud.defaults = {
+            //size: {start: 1, end: 1, unit: 'em'},
+            color: {start: '#bbbbee', end: '#2f93b4'},
+        };
+        $('#tag_cloud a').tagcloud();
+    })
 </script>
+<script src='{{ "/js/archive.js" | prepend: site.baseurl }}'></script>
 
 
 <!-- Gitalk 评论 start  -->

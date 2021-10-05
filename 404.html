@@ -23,24 +23,3 @@ permalink: /404.html
 <script>
 	document.body.classList.add('page-fullscreen');
 </script>
-
-<!-- 文章打赏功能 支持支付宝、微信打赏-->
-<script src='{{ "/js/ds.js" | prepend: site.baseurl }}'></script>
-<script>
-    new tctip({
-        top: '20%',
-        button: {
-            id: 6,
-            type: 'dashang'
-        },
-        list: [
-            {
-                type: 'alipay',
-                qrImg: '{{site.alipay_qr_img}}'
-            }, {
-                type: 'wechat',
-                qrImg: '{{site.wechat_qr_img}}'
-            }
-        ]
-    }).init()
-</script>

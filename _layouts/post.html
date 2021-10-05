@@ -2,9 +2,6 @@
 layout: default
 ---
 
-<!-- Image to hack wechat -->
-<!-- <img src="/img/apple-touch-icon.png" width="0" height="0"> -->
-<!-- <img src="{{ site.baseurl }}/{% if page.header-img %}{{ page.header-img }}{% else %}{{ site.header-img }}{% endif %}" width="0" height="0"> -->
 
 <!-- Post Header -->
 {% include intro-header.html type='post' %}
@@ -66,6 +63,7 @@ layout: default
                 <!-- 网易云跟帖 评论框 end -->
                 {% endif %}
             </div>  
+            <!-- Side Catalog  章节题目总结 -->
 
     <!-- Side Catalog Container -->
         {% if page.catalog %}
@@ -82,6 +80,63 @@ layout: default
                     <ul class="catalog-body"></ul>
                 </div>
             </div>
+            <script type="text/javascript">
+            function generateCatalog (selector) {
+
+                // interop with multilangual
+                if ('{{ page.multilingual }}' == 'true') {
+                    _containerSelector = 'div.post-container.active'
+                } else {
+                    _containerSelector = 'div.post-container'
+                }
+
+                // init
+                var P = $(_containerSelector),a,n,t,l,i,c;
+                a = P.find('h1,h2,h3,h4,h5,h6');
+
+                // clean
+                $(selector).html('')
+
+                // appending
+                a.each(function () {
+                    n = $(this).prop('tagName').toLowerCase();
+                    i = "#"+$(this).prop('id');
+                    t = $(this).text();
+                    c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
+                    l = $('<li class="'+n+'_nav"></li>').append(c);
+                    $(selector).append(l);
+                });
+                return true;
+            }
+
+            generateCatalog(".catalog-body");
+
+            // toggle side catalog
+            $(".catalog-toggle").click((function(e){
+                e.preventDefault();
+                $('.side-catalog').toggleClass("fold")
+            }))
+
+            /*
+             * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+             * Fork by Hux to support padding
+             */
+            async("{{ '/js/jquery.nav.js' | prepend: site.baseurl }}", function () {
+                $('.catalog-body').onePageNav({
+                    currentClass: "active",
+                    changeHash: !1,
+                    easing: "swing",
+                    filter: "",
+                    scrollSpeed: 700,
+                    scrollOffset: 0,
+                    scrollThreshold: .2,
+                    begin: null,
+                    end: null,
+                    scrollChange: null,
+                    padding: 80
+                });
+            });
+        </script>
         {% endif %}
 
     <!-- Sidebar Container -->
@@ -100,6 +155,77 @@ layout: default
     </div>
 </article>
 
+<script>
+//代码高亮自定义
+$("code").each(function(){
+  var content =  $(this).html().replace(/\n/g,"\n</li><li>");
+  $(this).html("<ul><li>" + content.substring(0, content.length - 4) +"</ul>");
+});
+</script>
+
+<!-- Side Catalog Container -->
+    {% if page.catalog %}
+        <script type="text/javascript">
+        function generateCatalog (selector) {
+
+            // interop with multilangual
+            if ('{{ page.multilingual }}' == 'true') {
+                _containerSelector = 'div.post-container.active'
+            } else {
+                _containerSelector = 'div.post-container'
+            }
+
+            // init
+            var P = $(_containerSelector),a,n,t,l,i,c;
+            a = P.find('h1,h2,h3,h4,h5,h6');
+
+            // clean
+            $(selector).html('')
+
+            // appending
+            a.each(function () {
+                n = $(this).prop('tagName').toLowerCase();
+                i = "#"+$(this).prop('id');
+                t = $(this).text();
+                c = $('<a href="'+i+'" rel="nofollow">'+t+'</a>');
+                l = $('<li class="'+n+'_nav"></li>').append(c);
+                $(selector).append(l);
+            });
+            return true;
+        }
+
+        generateCatalog(".catalog-body");
+
+        // toggle side catalog
+        $(".catalog-toggle").click((function(e){
+            e.preventDefault();
+            $('.side-catalog').toggleClass("fold")
+        }))
+
+        /*
+         * Doc: https://github.com/davist11/jQuery-One-Page-Nav
+         * Fork by Hux to support padding
+         */
+        async("{{ '/js/jquery.nav.js' | prepend: site.baseurl }}", function () {
+            $('.catalog-body').onePageNav({
+                currentClass: "active",
+                changeHash: !1,
+                easing: "swing",
+                filter: "",
+                scrollSpeed: 700,
+                scrollOffset: 0,
+                scrollThreshold: .2,
+                begin: null,
+                end: null,
+                scrollChange: null,
+                padding: 80
+            });
+        });
+    </script>
+    {% endif %}
+
+
+{% if page.pay %}
 <!-- 文章打赏功能 支持支付宝、微信打赏-->
 <script src='{{ "/js/ds.js" | prepend: site.baseurl }}'></script>
 <script>
@@ -120,7 +246,7 @@ layout: default
         ]
     }).init()
 </script>
-
+    {% endif %}
 
 <!-- add support for mathjax by voleking-->
 {% if page.mathjax %}
