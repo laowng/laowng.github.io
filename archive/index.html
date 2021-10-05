@@ -86,8 +86,20 @@ https://github.com/kitian616/jekyll-TeXt-theme
 
 </div>
 
-<!-- jQuery -->
-<script src="{{ "/js/jquery.min.js " | prepend: site.baseurl }}"></script>
+
+
+<!--async load function-->
+<script>
+    function async(u, c) {
+      var d = document, t = 'script',
+          o = d.createElement(t),
+          s = d.getElementsByTagName(t)[0];
+      o.src = u;
+      if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+      s.parentNode.insertBefore(o, s);
+    }
+</script>
+
 <!--Tags展示-->
 <!-- jquery.tagcloud.js -->
 <script>
