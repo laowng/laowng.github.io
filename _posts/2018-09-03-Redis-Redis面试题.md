@@ -7,7 +7,6 @@ author:     AnAn
 header-img: /img/post-bg-article.jpg
 catalog: true
 tags:
-    - 面试
     - Redis
 ---
 

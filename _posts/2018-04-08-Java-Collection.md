@@ -7,8 +7,7 @@ author:     AnAn
 header-img: /img/post-bg-article.jpg
 catalog: true
 tags:
-    - java
-    - 集合
+    - Java
 ---
 
 ### 集合

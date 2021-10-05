@@ -7,7 +7,7 @@ author:     AnAn
 header-img: /img/post-bg-article.jpg
 catalog: true
 tags:
-    - Blog
+    - Jekyll
 ---
 
 ## 前言

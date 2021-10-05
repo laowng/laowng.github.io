@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      Redis
+title:      Redis笔记
 subtitle:   Redis简介
 date:       2018-09-05
 author:     AnAn

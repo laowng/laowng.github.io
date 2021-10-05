@@ -7,9 +7,8 @@ author:     AnAn
 header-img: /img/post-bg-article.jpg
 catalog: true
 tags:
+    - Spring
     - SpringMVC
-    - Interceptor
-    - Filter
 ---
 
 ### 一 简介

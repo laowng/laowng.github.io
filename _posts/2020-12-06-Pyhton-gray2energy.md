@@ -7,7 +7,7 @@ author:     AnAn
 header-img: /img/post-bg-article.jpg
 catalog: true
 tags:
-    - 图像
+    - Python
 ---
 
 ### [灰度图转热力图python](/gray2energy.py)
