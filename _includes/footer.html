@@ -96,6 +96,15 @@
     })
 </script>
 
+<script>
+//代码高亮自定义
+$("code").each(function(){
+  var content =  $(this).html().replace(/\n/g,"\n</li><li>");
+  $(this).html("<ul><li>" + content.substring(0, content.length - 4) +"</ul>");
+});
+</script>
+
+
 
 <!-- Google Analytics -->
 {% if site.ga_track_id %}
