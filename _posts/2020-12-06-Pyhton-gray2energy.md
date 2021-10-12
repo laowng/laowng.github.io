@@ -10,7 +10,7 @@ tags:
     - Python
 ---
 
-### [灰度图转热力图python](/gray2energy.py)
+###  灰度图转热力图python
 - 该方法需要依赖numpy，cv2
 
 ```python

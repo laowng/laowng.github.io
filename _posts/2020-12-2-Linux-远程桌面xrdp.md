@@ -10,6 +10,10 @@ tags:
     - Linux
 ---
 
+### 使用XRDP
+- [转自Griffon's IT Library](http://c-nergy.be/blog/?p=13663)
+- 可以使用xorg或者直接连通
+- 同一用户多点同时登陆存在问题，教程中的方法可以在一定程度上缓解
 
 ### 使用vnc-any
 - 截图工具flameshot挺好用

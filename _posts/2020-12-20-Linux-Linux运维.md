@@ -1,7 +1,7 @@
 ---
 layout:     post
-title:      Ubuntu笔记
-subtitle:   Ubuntu笔记
+title:      Linux运维
+subtitle:   Ubuntu学习笔记
 date:       2020-12-02
 author:     AnAn
 header-img: /img/post-bg-article.jpg
@@ -98,4 +98,5 @@ tags:
     |59 1 1-7 4 * test 'date +\\%w' -eq 0 && /root/a.sh|四月的第一个星期日 01:59 分运行脚本 /root/a.sh ，命令中的 test是判断，%w是数字的星期几|
 
 <a name="系统服务工具systemd"></a>
+
 ### 系统服务工具systemd
