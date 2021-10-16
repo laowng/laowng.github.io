@@ -282,8 +282,8 @@ tags:
     [Install]
     WantedBy=multi-user.target
     Alias=sshd.service
+    ```  
     
-    ```
     - Unit(定义与Unit类型无关的通用选项；用于提供unit的描述信息、unit行为及依赖关系等)
         - Description：描述信息
         - Documentation：文档地址
@@ -331,8 +331,6 @@ tags:
         - Environment：指定环境变量
         - EnvironmentFile：指定当前服务的环境参数文件。该文件内部的key=value键值对，可以用$key的形式，在当前配置文件中获取
         - **所有的启动设置之前，都可以加上一个连词号（-），表示"抑制错误"，即发生错误的时候，不影响其他命令的执行**
-        - ****
-        - ****
         
     - Install(定义如何启动，以及是否开机启动)  
         - WantedBy：它的值是一个或多个Target，当前Unit激活时(enable)符号链接会放入/etc/systemd/system目录下面以Target名+.wants后缀构成的子目录中
