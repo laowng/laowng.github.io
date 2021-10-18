@@ -418,5 +418,9 @@ tags:
         After=basic.target rescue.service rescue.target
         AllowIsolate=yes
         ```
+- 后记
+    **有些程序不建议使用root权限执行，在脚本中可以使用“sudo -u username 命令”的方式执行**        
+    
+
 
  

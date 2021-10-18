@@ -39,6 +39,31 @@ tags:
 
         #记得将修改处变量前的“#”删去，使更改生效
      ```
+   - 将jupyter升级为系统服务（ubuntu systemd）
+    - jupyter-start.sh  
+        ```sh
+        #!/bin/bash
+        ### su snnu -c "" 不能这样写，systemd会跟踪不到子进程
+        sudo -u snnu nohup /home/snnu/anaconda3/bin/python -m jupyter notebook --port 8888 --no-browser --notebook-dir '~/' 1>>/dev/null 2>> /home/snnu/jupyter.service/error.log & 
+        ```  
+    - /lib/systemd/system/autojupyter.service 
+        ```sh
+        [Unit]
+        Description=jupyter notebook service
+        After=network.target
+                
+        [Service]
+        ExecStart=/home/snnu/jupyter.service/jupyter-start.sh
+        ExecReload=/bin/kill -HUP $MAINPID
+        KillMode=control-group
+        Restart=on-failure
+        Type=forking
+                
+        [Install]
+        WantedBy=multi-user.target
+        Alias=jupyter.service
+        ```  
+    
 4. conda更改清华源或者其他源
    - conda config --set show_channel_urls yes #使用该命令生成.condarc文件 一般位于"/home/username/"文件夹下
    - 将以下清华源索引复制到.condarc文件内，覆盖即可
