@@ -421,6 +421,7 @@ tags:
 - 后记    
   **有些程序不建议使用root权限执行，在脚本中可以使用“sudo -u username 命令”的方式执行**            
         
-    
+### 代理
+  用tsocks和proxychains代理Linux下所有软件
     
  

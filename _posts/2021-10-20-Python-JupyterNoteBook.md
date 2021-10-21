@@ -33,7 +33,7 @@ tags:
 
 
 <a name="jupyerNotebook安装"></a>
-###jupyerNotebook安装，及升级服务 
+### jupyerNotebook安装，及升级服务 
 - jupyter notebook 是一个交互式的python编辑器，一般用于程序远程执行，调试。多用于服务器
 - 如果使用conda环境安装jupyter 建议使用
  ```sh
