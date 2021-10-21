@@ -1,13 +1,13 @@
 ---
 layout:     post   
-title:      Java远程调试   
-subtitle:   JDWP: Java Debug Wire Protocal   
-date:       2021-10-14   
+title:      JupyterNotebook   
+subtitle:   Python JupyterNotebook   
+date:       2021-10-20   
 author:     AnAn   
 header-img: /img/life-bg/nature1.jpeg   
 catalog: true   
 tags:   
-    - Java
+    - Python
 ---   
 
 ## 介绍   
